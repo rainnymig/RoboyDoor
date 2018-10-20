@@ -3,7 +3,7 @@ import time
 import telepot
 import random
 from os import listdir
-from os.path import isfile, join
+from os.path import join, dirname, isfile, realpath
 from telepot.loop import MessageLoop
 from pprint import pprint
 from playsound import playsound
@@ -14,7 +14,8 @@ ChatTitles = ["Roboy Core Team", "开门啊"]
 
 RoboyOpenDoorSticker = "CAADAgADcwAD5dCAEEsvdJvjUpsSAg"
 
-AudioDir = "audios/"
+AudioDir = dirname(realpath(__file__))
+AudioDir = join(AudioDir, "audios")
 
 DoorOpenerIp = "192.168.0.137"
 
