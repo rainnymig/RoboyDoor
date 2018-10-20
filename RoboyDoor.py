@@ -5,17 +5,22 @@ from telepot.loop import MessageLoop
 from pprint import pprint
 from playsound import playsound
 
-ChatTitle = ["Roboy Core Team", "开门啊"]
+BotAuthCode = "741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s"
+
+ChatTitles = ["Roboy Core Team", "开门啊"]
+
+RoboyOpenDoorSticker = "CAADAgADcwAD5dCAEEsvdJvjUpsSAg"
+
+DoorOpenerIp = "192.168.0.137"
 
 def handle(msg):
-	content_type, chat_type, chat_id = telepot.glance(msg)
-	if (chat_type == "group" and (msg["chat"]["title"] in ChatTitle)):
-		if content_type == "sticker":
-			bot.sendMessage(chat_id, "you send a message")
+	contentType, chatType, chatId = telepot.glance(msg)
+	if (chatType == "group" and (msg["chat"]["title"] in ChatTitles)):
+		if contentType == "sticker" and msg["sticker"]["file_id"] == RoboyOpenDoorSticker:
 			playsound('audios/canopenthedoor.mp3')
 
 
-bot = telepot.Bot('741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s')
+bot = telepot.Bot(BotAuthCode)
 MessageLoop(bot, handle).run_as_thread()
 
 while 1:
