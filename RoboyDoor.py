@@ -12,7 +12,7 @@ def handle(msg):
 	if (chat_type == "group" and (msg["chat"]["title"] in ChatTitle)):
 		if content_type == "sticker":
 			bot.sendMessage(chat_id, "you send a message")
-			playsound('audios/openthefckdoor.mp3')
+			playsound('audios/canopenthedoor.mp3')
 
 
 bot = telepot.Bot('741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s')
