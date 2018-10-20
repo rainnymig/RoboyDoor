@@ -1,27 +1,22 @@
 import sys
 import time
 import telepot
+from telepot.loop import MessageLoop
+from pprint import pprint
+from playsound import playsound
+
+ChatTitle = ["Roboy Core Team", "开门啊"]
 
 def handle(msg):
-    chat_id = msg['chat']['id']
-    command = msg['text']
-
-    print('imcoming: %s\n' % command)
-
+	content_type, chat_type, chat_id = telepot.glance(msg)
+	if (chat_type == "group" and (msg["chat"]["title"] in ChatTitle)):
+		if content_type == "sticker":
+			bot.sendMessage(chat_id, "you send a message")
+			playsound('audios/openthefckdoor.mp3')
 
 
 bot = telepot.Bot('741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s')
-bot.message_loop(handle)
-print('I am listening')
+MessageLoop(bot, handle).run_as_thread()
 
 while 1:
-    try:
-        time.sleep(10)
-
-    except KeyboardInterrupt:
-        print('\nProgram interrupt, exit.\n')
-        exit()
-
-    except:
-        print('\nOther error\n')
-        exit()
+	time.sleep(10)
