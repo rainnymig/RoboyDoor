@@ -7,10 +7,11 @@ from os.path import join, dirname, isfile, realpath
 from telepot.loop import MessageLoop
 from pprint import pprint
 from playsound import playsound
+import urllib.request
 
 BotAuthCode = "741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s"
 
-ChatTitles = ["Roboy Core Team", "开门啊"]
+ChatTitles = ["Roboy Core Team", "开门啊", "Hack Roboy"]
 
 RoboyOpenDoorSticker = "CAADAgADcwAD5dCAEEsvdJvjUpsSAg"
 
@@ -27,6 +28,10 @@ def handle(msg):
 	if (chatType == "group" and (msg["chat"]["title"] in ChatTitles)):
 		if contentType == "sticker" and msg["sticker"]["file_id"] == RoboyOpenDoorSticker:
 			playsound(join(AudioDir, audioFiles[random.choice(l)]))
+			requestDoorOpener()
+
+def requestDoorOpener():
+	urllib.request.urlopen("http://"+DoorOpenerIp+"/5/on")
 
 bot = telepot.Bot(BotAuthCode)
 MessageLoop(bot, handle).run_as_thread()
