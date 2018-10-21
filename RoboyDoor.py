@@ -8,8 +8,13 @@ from telepot.loop import MessageLoop
 from pprint import pprint
 from playsound import playsound
 import urllib.request
+import json
 
-BotAuthCode = "741304853:AAEC9t__AwP_75_lEQOlSOq6H7KXDjE404s"
+confDict
+with open('conf.json') as fp:
+	confDict = json.load(fp)
+
+BotAuthCode = confDict['botAuthCode']
 
 ChatTitles = ["Roboy Core Team", "开门啊", "Hack Roboy"]
 
@@ -18,7 +23,7 @@ RoboyOpenDoorSticker = "CAADAgADcwAD5dCAEEsvdJvjUpsSAg"
 AudioDir = dirname(realpath(__file__))
 AudioDir = join(AudioDir, "audios")
 
-DoorOpenerIp = "192.168.0.137"
+DoorOpenerIp = confDict['openerIp']
 
 audioFiles = [f for f in listdir(AudioDir) if isfile(join(AudioDir, f))]
 l = range(0, len(audioFiles))
