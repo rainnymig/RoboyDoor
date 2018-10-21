@@ -34,9 +34,11 @@ def handle(msg):
 		if contentType == "sticker" and msg["sticker"]["file_id"] == RoboyOpenDoorSticker:
 			playsound(join(AudioDir, audioFiles[random.choice(l)]))
 			requestDoorOpener()
+	else:
+		pprint(msg)
 
 def requestDoorOpener():
-	urllib.request.urlopen("http://"+DoorOpenerIp+"/5/on")
+	urllib.request.urlopen(DoorOpenerIp+"/5/on")
 
 bot = telepot.Bot(BotAuthCode)
 MessageLoop(bot, handle).run_as_thread()
